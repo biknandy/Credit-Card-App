@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.braintreepayments.cardform.view.CardForm;
@@ -53,18 +54,23 @@ public class AddCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                SharedPreferences sharedPref = getSharedPreferences("PrefsFile", Context.MODE_PRIVATE);
+                SharedPreferences sharedPref = getSharedPreferences("Prefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 
 
                 //get number of cards, if null it's 0
                 int cardNums = sharedPref.getInt(getString(R.string.numKey), 0) + 1;
 
+                Log.d("cardNums", Integer.toString(cardNums));
+
                 //set number of cards in sharedpref
                 editor.putInt("cardNum", cardNums);
 
+                Log.d("cardNums", cardForm.getCardNumber());
+
                 //store card info to sharedpref (with tag of card position)
                 editor.putString("card"+cardNums, cardForm.getCardNumber());
+
                 editor.apply();
 
                 // just close this view

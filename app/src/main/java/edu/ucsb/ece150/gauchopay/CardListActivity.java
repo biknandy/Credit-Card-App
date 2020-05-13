@@ -105,7 +105,7 @@ public class CardListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        SharedPreferences sharedPref = getSharedPreferences("PrefsFile", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("Prefs", Context.MODE_PRIVATE);
 
         // [TODO] This is a placeholder. Modify the card information in the cardArray ArrayList
         // accordingly.
@@ -117,7 +117,7 @@ public class CardListActivity extends AppCompatActivity {
 
         //Retreive all cards from sharedpref
         for (int i = 1; i <= cardCount; i++) {
-            String cardNumber = sharedPref.getString("card"+1, "No card found");
+            String cardNumber = sharedPref.getString("card"+i, "No card found");
             cardArray.add(cardNumber);
         }
 
