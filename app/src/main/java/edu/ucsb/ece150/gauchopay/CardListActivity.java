@@ -5,7 +5,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +23,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class CardListActivity extends AppCompatActivity {
+
+    static final String PREFS = "PrefsFile";
+
+    SharedPreferences sharedPref = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 
     private static final int RC_HANDLE_INTERNET_PERMISSION = 2;
 
@@ -105,13 +111,15 @@ public class CardListActivity extends AppCompatActivity {
         // accordingly.
         cardArray.clear();
 
-        //Retreive all cards from sharedpref
-
         //retreive number of cards
+        int cardCount = sharedPref.getInt(getString(R.string.numKey), 0);
 
-        //add with cardArray.add
 
-
+        //Retreive all cards from sharedpref
+        for (int i = 1; i <= cardCount; i++) {
+            String cardNumber = sharedPref.getString("card"+1, "No card found");
+            cardArray.add(cardNumber);
+        }
 
 
 

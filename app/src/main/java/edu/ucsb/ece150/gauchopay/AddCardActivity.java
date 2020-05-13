@@ -15,7 +15,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class AddCardActivity extends AppCompatActivity {
 
     static final String PREFS = "PrefsFile";
-    SharedPreferences.Editor editor = getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit();
+
+    SharedPreferences sharedPref = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPref.edit();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,45 +56,24 @@ public class AddCardActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //store card info to sharedpref (with a tag as a random string for each in case of duplicates)
 
-                //store # of cards to sharedpref
-                    //if the entry is null in sharedpref, create an entry and set to 0
-                    //if not null, get the number of the entry increase by 1 and set
 
-                //send info to cardlistactivity
+                //get number of cards, if null it's 0
+                int cardNums = sharedPref.getInt(getString(R.string.numKey), 0) + 1;
+
+                //set number of cards in sharedpref
+                editor.putInt("cardNum", cardNums);
+
+                //store card info to sharedpref (with tag of card position)
+                editor.putString("card"+cardNums, cardForm.getCardNumber());
+
+
+                // just close this view
+                finish();
 
             }
         });
 
 
-    }
-
-    // function to generate a random string of length n
-    static String getAlphaNumericString(int n)
-    {
-
-        // chose a Character random from this String
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + "0123456789"
-                + "abcdefghijklmnopqrstuvxyz";
-
-        // create StringBuffer size of AlphaNumericString
-        StringBuilder sb = new StringBuilder(n);
-
-        for (int i = 0; i < n; i++) {
-
-            // generate a random number between
-            // 0 to AlphaNumericString variable length
-            int index
-                    = (int)(AlphaNumericString.length()
-                    * Math.random());
-
-            // add Character one by one in end of sb
-            sb.append(AlphaNumericString
-                    .charAt(index));
-        }
-
-        return sb.toString();
     }
 }
