@@ -16,6 +16,8 @@ public class WriteWebServer extends AsyncTask<String, String, String> {
 
     private WeakReference<Context> callingContext;
 
+
+
     WriteWebServer(Context context, String cardNumber) {
         this.callingContext = new WeakReference<>(context);
         this.cardNumber = cardNumber;

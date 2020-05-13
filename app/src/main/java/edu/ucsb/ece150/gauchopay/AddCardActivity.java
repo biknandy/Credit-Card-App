@@ -57,16 +57,11 @@ public class AddCardActivity extends AppCompatActivity {
                 SharedPreferences sharedPref = getSharedPreferences("Prefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 
-
                 //get number of cards, if null it's 0
                 int cardNums = sharedPref.getInt(getString(R.string.numKey), 0) + 1;
 
-                Log.d("cardNums", Integer.toString(cardNums));
-
                 //set number of cards in sharedpref
                 editor.putInt("cardNum", cardNums);
-
-                Log.d("cardNums", cardForm.getCardNumber());
 
                 //store card info to sharedpref (with tag of card position)
                 editor.putString("card"+cardNums, cardForm.getCardNumber());

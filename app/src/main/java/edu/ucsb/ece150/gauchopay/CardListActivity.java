@@ -89,7 +89,8 @@ public class CardListActivity extends AppCompatActivity {
                     // Get the card number from the cardArray based on the position in the array.
 
                     //Create a WriteWebServer object, pass in card number
-                    //.execute()
+                    WriteWebServer webServer = new WriteWebServer(getApplicationContext(), cardArray.get(posID));
+                    webServer.execute();
 
                     // Reset the stored information from the last API call
                     ReadWebServer.resetLastAmount();
