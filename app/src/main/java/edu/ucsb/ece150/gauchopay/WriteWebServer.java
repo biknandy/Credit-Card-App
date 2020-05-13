@@ -3,6 +3,7 @@ package edu.ucsb.ece150.gauchopay;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
@@ -15,10 +16,11 @@ public class WriteWebServer extends AsyncTask<String, String, String> {
     private String cardNumber;
 
     private WeakReference<Context> callingContext;
-
+    Context toastContext;
 
 
     WriteWebServer(Context context, String cardNumber) {
+        toastContext = context;
         this.callingContext = new WeakReference<>(context);
         this.cardNumber = cardNumber;
     }
@@ -60,6 +62,11 @@ public class WriteWebServer extends AsyncTask<String, String, String> {
         // with the result since we are only SENDING information to the web server.
 
         //Display Transaction
+        CharSequence text = "Transaction Completed!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(toastContext, text, duration);
+        toast.show();
 
     }
 }

@@ -75,7 +75,7 @@ public class ReadWebServer extends AsyncTask<String, String, String> {
             // for sending to the web server. (Maybe a Toast)
 
             CharSequence text = "Please select a card for $" + lastAmount;
-            int duration = Toast.LENGTH_LONG;
+            int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(toastContext, text, duration);
             toast.show();
