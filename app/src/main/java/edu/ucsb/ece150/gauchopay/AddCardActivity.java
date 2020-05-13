@@ -14,10 +14,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AddCardActivity extends AppCompatActivity {
 
-    static final String PREFS = "PrefsFile";
-
-    SharedPreferences sharedPref = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPref.edit();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +53,9 @@ public class AddCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                SharedPreferences sharedPref = getSharedPreferences("PrefsFile", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
 
                 //get number of cards, if null it's 0
                 int cardNums = sharedPref.getInt(getString(R.string.numKey), 0) + 1;
@@ -66,7 +65,7 @@ public class AddCardActivity extends AppCompatActivity {
 
                 //store card info to sharedpref (with tag of card position)
                 editor.putString("card"+cardNums, cardForm.getCardNumber());
-
+                editor.apply();
 
                 // just close this view
                 finish();

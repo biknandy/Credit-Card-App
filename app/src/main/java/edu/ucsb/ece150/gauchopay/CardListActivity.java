@@ -24,9 +24,7 @@ import java.util.TimerTask;
 
 public class CardListActivity extends AppCompatActivity {
 
-    static final String PREFS = "PrefsFile";
 
-    SharedPreferences sharedPref = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 
     private static final int RC_HANDLE_INTERNET_PERMISSION = 2;
 
@@ -106,6 +104,8 @@ public class CardListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        SharedPreferences sharedPref = getSharedPreferences("PrefsFile", Context.MODE_PRIVATE);
 
         // [TODO] This is a placeholder. Modify the card information in the cardArray ArrayList
         // accordingly.
