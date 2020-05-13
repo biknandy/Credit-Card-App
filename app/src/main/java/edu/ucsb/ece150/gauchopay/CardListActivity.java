@@ -106,6 +106,7 @@ public class CardListActivity extends AppCompatActivity {
         cardArray.clear();
 
         //Retreive all cards from sharedpref
+
         //retreive number of cards
 
         //add with cardArray.add
@@ -119,5 +120,5 @@ public class CardListActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    //Add on pause activity
+    //Add on pause activity to save state
 }

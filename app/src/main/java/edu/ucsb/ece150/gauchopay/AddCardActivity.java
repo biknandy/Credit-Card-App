@@ -3,6 +3,9 @@ package edu.ucsb.ece150.gauchopay;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,10 +14,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AddCardActivity extends AppCompatActivity {
 
+    static final String PREFS = "PrefsFile";
+    SharedPreferences.Editor editor = getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
+
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Add Card");
@@ -42,13 +50,49 @@ public class AddCardActivity extends AppCompatActivity {
         // list of cards).
 
         //create FAB button for submit
-        //get card info from cardForm
+        FloatingActionButton fab = findViewById(R.id.send);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //store card info to sharedpref (with a tag as a random string for each in case of duplicates)
 
-        //store card info to sharedpref (with a different tag for each in case of duplicates)
-        //store # of cards to sharedpref
+                //store # of cards to sharedpref
+                    //if the entry is null in sharedpref, create an entry and set to 0
+                    //if not null, get the number of the entry increase by 1 and set
+
+                //send info to cardlistactivity
+
+            }
+        });
 
 
-        //send info to cardlistactivity
+    }
 
+    // function to generate a random string of length n
+    static String getAlphaNumericString(int n)
+    {
+
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
     }
 }
